@@ -9,6 +9,9 @@ public class Window {
     private String title;
     private long window;
 
+    public int frames;
+    public static long time;
+
     public Window(int width, int height) {
         this.width = width;
         this.height = height;
@@ -35,14 +38,24 @@ public class Window {
         }
 
         GLFWVidMode videoMode = GLFW.glfwGetVideoMode(GLFW.glfwGetPrimaryMonitor());
-
         GLFW.glfwSetWindowPos(window, (videoMode.width() - width) / 2, (videoMode.height() - height) / 2);
-
         GLFW.glfwShowWindow(window);
+        GLFW.glfwMakeContextCurrent(window);
+
+        GLFW.glfwSwapInterval(1);
+
+        time = System.currentTimeMillis();
     }
 
     public void update() {
         GLFW.glfwPollEvents();
+        frames++;
+
+        if(System.currentTimeMillis() > time + 1000) { // One second has passed
+            GLFW.glfwSetWindowTitle(window,title + " | " + frames + " FPS");
+            time = System.currentTimeMillis();
+            frames = 0;
+        }
     }
 
     public void swapBuffers() {

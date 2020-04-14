@@ -15,7 +15,6 @@ public class App implements Runnable {
     }
 
     public static void init() {
-        System.out.println("Initializing game...");
         window = new Window(WIDTH, HEIGHT, TITLE);
         window.create();
     }
@@ -33,12 +32,10 @@ public class App implements Runnable {
     }
 
     private void update() {
-        System.out.println("Updating game...");
         window.update();
     }
 
     private void render() {
-        System.out.println("Rendering game...");
         window.swapBuffers();
     }
 
