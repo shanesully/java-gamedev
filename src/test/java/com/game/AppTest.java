@@ -2,7 +2,7 @@ package com.game;
 
 import org.junit.Test;
 
-class AppTest {
+public class AppTest {
     @Test
     public void example() {
 
